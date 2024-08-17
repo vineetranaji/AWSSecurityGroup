@@ -32,7 +32,7 @@ resource "aws_security_group" "allow_traffic" {
 // Inbound/Inress Security group rule attaching to Security group
 resource "aws_vpc_security_group_ingress_rule" "allow_inbound_rule1" {
   security_group_id = aws_security_group.allow_traffic.id
-  cidr_ipv4         = aws_vpc.main.cidr_block
+  cidr_blocks       = var.cidr
   from_port         = 443
   ip_protocol       = "tcp"
   to_port           = 443
@@ -41,7 +41,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_inbound_rule1" {
 // Outbound/Egress Security group rule attaching to Security group
 resource "aws_vpc_security_group_egress_rule" "allow_outbound_rule1" {
   security_group_id = aws_security_group.allow_traffic.id
-  cidr_ipv4         = aws_vpc.main.cidr_block
+  cidr_blocks       = var.cidr
   from_port         = 443
   ip_protocol       = "tcp"
   to_port           = 443
